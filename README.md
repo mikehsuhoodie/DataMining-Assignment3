@@ -27,6 +27,29 @@ Important identifiers:
 - Submission ID comes from each test CSV's `file_id`.
 - Submission output must contain columns exactly `Id,Label`.
 
+## Project Structure
+
+```text
+.
+|-- README.md
+|-- requirements.txt
+|-- download_data.sh
+|-- src/
+|   |-- features.py
+|   |-- train.py
+|   |-- predict.py
+|   `-- utils.py
+`-- notebooks/
+    `-- 01_dataset_exploration.ipynb
+```
+
+- `src/features.py`: feature extraction and feature-set definitions.
+- `src/train.py`: grouped cross-validation, model training, and artifact saving.
+- `src/predict.py`: loads a trained artifact and writes `submission.csv`.
+- `src/utils.py`: shared data-loading path helpers.
+- `download_data.sh`: downloads and extracts the Kaggle competition data.
+- `notebooks/`: dataset exploration only; the reproducible training and prediction pipeline is under `src/`.
+
 ## Modeling Direction
 
 The main approach is a tabular time-series feature pipeline:
