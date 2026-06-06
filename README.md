@@ -40,12 +40,13 @@ The main approach is a tabular time-series feature pipeline:
 
 Random row or random file splitting should not be used because test users are unseen users.
 
-## Planned Commands
+## Run Commands
 
-Install dependencies:
+Create a virtual environment and install dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
 ```
 
 Download data:
@@ -53,6 +54,8 @@ Download data:
 ```bash
 bash download_data.sh
 ```
+
+`download_data.sh` uses the Kaggle CLI. Before running it, place your Kaggle API token at `~/.kaggle/kaggle.json`.
 
 Final training and prediction commands:
 
@@ -72,12 +75,12 @@ MPLCONFIGDIR=/tmp .venv/bin/python -u -m src.train --feature-set full_rolling --
 ## Expected Outputs
 
 ```text
-outputs/
+outputs_lgbm_full_correlation/
 |-- validation_results.csv
 |-- confusion_matrix.csv
 `-- submission.csv
 ```
 
-`outputs/submission.csv` should match `data/sample_submission.csv` row count and ID order.
+`outputs_lgbm_full_correlation/submission.csv` should match `data/sample_submission.csv` row count and ID order.
 
 The current Kaggle-facing output is `outputs_lgbm_full_correlation/submission.csv`.
